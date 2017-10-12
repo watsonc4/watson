@@ -22,7 +22,7 @@
 // (the user button)
 gpio_pin_t led = {PI_1, GPIOI, GPIO_PIN_1};
 gpio_pin_t pb1 = {PA_8, GPIOA, GPIO_PIN_8};
-gpio_pin_t led2 = {PI_2, GPIOI, GPIO_PIN_2};
+gpio_pin_t led2 = {PB_15, GPIOB, GPIO_PIN_15};
 
 // this is the main method
 int main()
@@ -44,18 +44,26 @@ int main()
 		int buttonstate1 = read_gpio(pb1);
 		HAL_Delay(75);
 		int buttonstate2 = read_gpio(pb1);
-		
+		HAL_Delay(75);
+	int count;
 		// combine the two readings
 		int buttonstate = buttonstate1 & buttonstate2;
 		
 		if (buttonstate)
 		{ 
-			toggle_gpio(led);
-		
+		toggle_gpio(led);
+	
+		HAL_Delay(1000);
 		}
   
+	 if (buttonstate )
+	{
+		
+		toggle_gpio(led2);
+		
+	}
 			
-  
+ 
 		
   }
 }
